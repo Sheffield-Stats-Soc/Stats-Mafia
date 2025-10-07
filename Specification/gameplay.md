@@ -21,3 +21,4 @@
      - Every incorrect guess they make loses them a life, and they only have a limited number of lives (this can be customised in the settings)
      - If they guess the imposters correctly, they win
 3. If the game ends too quickly, we can pivot to a social or a discussion about some arbitrary stats topic
+

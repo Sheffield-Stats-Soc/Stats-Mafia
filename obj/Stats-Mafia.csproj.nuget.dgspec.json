@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Archie\\Source\\Repos\\Stats-Mafia\\Stats-Mafia.csproj": {}
+    "C:\\Users\\Archie\\source\\repos\\Stats-Mafia\\Stats-Mafia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Archie\\Source\\Repos\\Stats-Mafia\\Stats-Mafia.csproj": {
+    "C:\\Users\\Archie\\source\\repos\\Stats-Mafia\\Stats-Mafia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Archie\\Source\\Repos\\Stats-Mafia\\Stats-Mafia.csproj",
+        "projectUniqueName": "C:\\Users\\Archie\\source\\repos\\Stats-Mafia\\Stats-Mafia.csproj",
         "projectName": "Stats-Mafia",
-        "projectPath": "C:\\Users\\Archie\\Source\\Repos\\Stats-Mafia\\Stats-Mafia.csproj",
+        "projectPath": "C:\\Users\\Archie\\source\\repos\\Stats-Mafia\\Stats-Mafia.csproj",
         "packagesPath": "C:\\Users\\Archie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Archie\\Source\\Repos\\Stats-Mafia\\obj\\",
+        "outputPath": "C:\\Users\\Archie\\source\\repos\\Stats-Mafia\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,6 +50,16 @@
       "frameworks": {
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows",
+          "dependencies": {
+            "HdrHistogram": {
+              "target": "Package",
+              "version": "[2.5.0, )"
+            },
+            "System.Speech": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
