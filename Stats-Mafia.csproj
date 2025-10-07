@@ -11,8 +11,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ActionResponse.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HdrHistogram" Version="2.5.0" />
     <PackageReference Include="System.Speech" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ActionResponse.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

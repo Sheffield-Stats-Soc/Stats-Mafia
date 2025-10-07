@@ -1,6 +1,5 @@
-﻿using Stats_Mafia.Windows;
-using System.Configuration;
-using System.Data;
+﻿using Stats_Mafia.Utilities;
+using Stats_Mafia.Windows;
 using System.Windows;
 
 namespace Stats_Mafia;
@@ -10,6 +9,9 @@ namespace Stats_Mafia;
 /// </summary>
 public partial class App : Application
 {
+    public readonly bool SpeechSynthesisEnabled = true;
+    public readonly SpeechSystem.SpeechFilter SpeechFilter = SpeechSystem.SpeechFilter.All;
+    
 #if DEBUG
     public App()
     {
@@ -21,7 +23,7 @@ public partial class App : Application
         {
             data_2[I] = (short)(Random.Shared.Next(1, 25) + Random.Shared.Next(1, 25));
         }
-
+        
 
         Histogram histogramWindow = Histogram.Create(data_2, true);
 

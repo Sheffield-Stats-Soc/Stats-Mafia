@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stats_Mafia.Windows"
         mc:Ignorable="d"
-        Title="Histogram Display" Height="480" Width="800" ResizeMode="NoResize" ShowInTaskbar="True">
+        Title="Histogram Display" Height="480" Width="800" ResizeMode="NoResize" ShowInTaskbar="False" Icon="/ActionResponse.ico">
     <Grid Margin="5" ShowGridLines="True">
         <StackPanel>
             <TextBlock x:Name="TitleDisplay" Text="Histogram Title" AllowDrop="False" FontSize="20" HorizontalAlignment="Center" Padding="5" FontWeight="Bold"/>

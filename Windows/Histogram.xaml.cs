@@ -58,18 +58,42 @@ namespace Stats_Mafia.Windows
         /// </summary>
         public bool MouseInspection { get; set; } = false;
 
+        /// <summary>
+        /// Holds a reference to the narrator used to speak out text on the screen
+        /// </summary>
+        private readonly SpeechSystem Narrator = new();
+
         private Histogram(IEnumerable<short> values) 
         {
+            InitializeComponent();
+
             _Values = values;
             _Histogram = new ShortHistogram(values.Min(), values.Max(), 5);
+            TitleDisplay.Text = HistogramTitle;
+            
 
-         
             foreach (short item in values)
             {
                 _Histogram.RecordValue(item);
             }
 
-            InitializeComponent();
+            StringBuilder promptBuilder = new();
+            promptBuilder.AppendLine($"{Title}: Window");
+            promptBuilder.AppendLine($"Title: {HistogramTitle}");
+            promptBuilder.AppendLine($"X-Axis: {XAxisLabel}");
+            promptBuilder.AppendLine($"Y-Axis: {YAxisLabel}");
+            promptBuilder.AppendLine($"Categories: {_Values.ToHashSet().Count}");
+            promptBuilder.AppendLine($"Min Value: {_Histogram.LowestTrackableValue}");
+            promptBuilder.AppendLine($"Max Value: {_Histogram.HighestTrackableValue}");
+            promptBuilder.AppendLine($"Range: {_Histogram.HighestTrackableValue - _Histogram.LowestTrackableValue}");
+            promptBuilder.AppendLine($"Count: {_Histogram.TotalCount}");
+            promptBuilder.AppendLine($"Mean Value: {_Histogram.GetMean():F2}");
+            promptBuilder.AppendLine($"Median Value: {_Histogram.GetValueAtPercentile(50):F2}");
+            promptBuilder.AppendLine($"Standard Deviation: {_Histogram.GetStdDeviation():F2}");
+            promptBuilder.AppendLine($"90th Percentile: {_Histogram.GetValueAtPercentile(90):F2}");
+            promptBuilder.AppendLine($"99th Percentile: {_Histogram.GetValueAtPercentile(99):F2}");
+
+            Narrator.Speak(promptBuilder.ToString(), SpeechSystem.SpeechFilter.WindowCreated, true);
         }
 
         /// <summary>
@@ -215,7 +239,7 @@ namespace Stats_Mafia.Windows
             {
                 TextBlock xLabel = new()
                 {
-                    Text = "X-Axis",
+                    Text = XAxisLabel,
                     FontSize = 16,
                     FontWeight = FontWeights.DemiBold,
                     Width = canvas.ActualWidth,
@@ -354,6 +378,8 @@ namespace Stats_Mafia.Windows
                             Canvas.SetLeft(inspectionLabel, labelXPosition);
                             Canvas.SetTop(inspectionLabel, labelYPosition);
                             canvas.Children.Add(inspectionLabel);
+
+                            Narrator.Speak($"The selected bar has a value of {inspectedValue} on the X-Axis labelled {XAxisLabel}, and a value of {inspectedFrequency} on the Y-Axis labelled {YAxisLabel}", SpeechSystem.SpeechFilter.Interact);
                         }
                     }
                 }
@@ -364,8 +390,8 @@ namespace Stats_Mafia.Windows
             {
                 StringBuilder infoBuilder = new();
                 infoBuilder.Append($" Min: {_Histogram.LowestTrackableValue} |");
-                infoBuilder.Append($" Max: {_Histogram.GetMaxValue()} |");
-                infoBuilder.Append($" Range: {_Histogram.GetMaxValue() - _Histogram.LowestEquivalentValue(long.MinValue)} | ");
+                infoBuilder.Append($" Max: {_Histogram.HighestTrackableValue} |");
+                infoBuilder.Append($" Range: {_Histogram.HighestTrackableValue - _Histogram.LowestTrackableValue} | ");
                 infoBuilder.Append($" Count: {_Histogram.TotalCount} |");
                 infoBuilder.Append($" Mean: {_Histogram.GetMean():F2} |");
                 infoBuilder.Append($" Median: {_Histogram.GetValueAtPercentile(50):F2} |");
