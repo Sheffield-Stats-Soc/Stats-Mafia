@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stats_Mafia.Windows"
         mc:Ignorable="d"
-        Title="Histogram" Height="450" Width="800">
-    <Grid>
-        
+        Title="Histogram Display" Height="480" Width="800" ResizeMode="NoResize" ShowInTaskbar="True">
+    <Grid Margin="5" ShowGridLines="True">
+        <StackPanel>
+            <TextBlock x:Name="TitleDisplay" Text="Histogram Title" AllowDrop="False" FontSize="20" HorizontalAlignment="Center" Padding="5" FontWeight="Bold"/>
+            <Canvas x:Name="DisplayCanvas" Background="White" SnapsToDevicePixels="True" ClipToBounds="True" Loaded="DisplayCanvas_Loaded" VerticalAlignment="Center" MinHeight="380" SizeChanged="DisplayCanvas_SizeChanged" MouseLeftButtonDown="DisplayCanvas_MouseLeftButtonDown" MouseRightButtonDown="DisplayCanvas_MouseRightButtonDown"/>
+        </StackPanel>
     </Grid>
 </Window>
